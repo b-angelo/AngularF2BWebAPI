@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 
+
 namespace APM.WebAPI
 {
     public static class WebApiConfig
@@ -19,6 +20,11 @@ namespace APM.WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
+
+            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
